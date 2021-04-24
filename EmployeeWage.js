@@ -173,4 +173,15 @@ let totalWorkingDays = 0;
         });
     }
     console.log("UC 10 : Showing Daily Hours Worked and Wage Earned: " + empDailyHrAndWageArr);
+
+    //UC 11A-D object using arrow functions
+    let totalWages = empDailyHrAndWageArr
+        .filter(dailyHoursAndWages => dailyHoursAndWages.dailyWage > 0)
+        .reduce((totalWage, dailyHoursAndWages) => totalWage += dailyHoursAndWages.dailyWage, 0);
+
+    let totalHours = empDailyHrAndWageArr
+        .filter(dailyHoursAndWages => dailyHoursAndWages.dailyWage > 0)
+        .reduce((totalHours, dailyHoursAndWages) => totalHours += dailyHoursAndWages.dailyHours, 0);
+
+    console.log("\n UC 11: Total Hours: " + totalHours + " Total Wages: " + totalWages);
 }
