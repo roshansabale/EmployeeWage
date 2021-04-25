@@ -1,8 +1,6 @@
 class EmployeePayrollData {
     //Property
-    id;
-    salary;
-    gender;
+
     startDate;
 
     //Constructor using normal 
@@ -30,6 +28,34 @@ class EmployeePayrollData {
         else throw 'Name is incorrect!!'
     }
 
+    get id() { return this._id; }
+    set id(id) {
+        let idRegex = RegExp('[1-9]+[0-9]?');
+
+        if (idRegex.test(id))
+            this._id = id;
+        else throw 'ID is incorrect'
+    }
+
+    get salary() { return this._salary; }
+    set salary(salary) {
+        let salaryRegex = RegExp('[1-9]+[0-9]?');
+
+        if (salaryRegex.test(salary))
+            this._salary = salary;
+        else throw 'salary is invalid'
+    }
+
+    get gender() { return this._gender; }
+    set gender(gender) {
+        let genderRegex = RegExp('^[m|f|M|F]{1}');
+
+        if (genderRegex.test(gender))
+            this._gender = gender;
+        else throw 'gender is invalid'
+    }
+
+
     //method
     toString() {
         const option = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -40,11 +66,14 @@ class EmployeePayrollData {
     }
 }
 
-let employeePayrollData = new EmployeePayrollData(100, "Mark", 300000);
+let employeePayrollData = new EmployeePayrollData(100, "Mark", 300000, "F");
 console.log(employeePayrollData.toString());
-employeePayrollData.id = 200;
+
 try {
-    employeePayrollData.name = "roshan";
+    employeePayrollData.gender = "x";
+    employeePayrollData.salary = 0;
+    employeePayrollData.id = 0;
+    employeePayrollData.name = "Roshan";
     console.log(employeePayrollData.toString());
 } catch (e) {
     console.error(e);
