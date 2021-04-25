@@ -16,6 +16,7 @@ class EmployeePayrollData {
         this.gender = params[3];
         this.startDate = params[4];
         this.postalCode = params[5];
+        this.email = params[6];
     }
 
     //Getter and setter
@@ -75,6 +76,17 @@ class EmployeePayrollData {
         } catch (e) { console.error(e); }
     }
 
+    get email() { return this._email; }
+    set email(email) {
+        try {
+            let emailRegex = RegExp('^[a-z]+[-+._]?[a-z]+@[a-z]+[.][a-z]{2,}[.]?([a-z]{2,})?$');
+            //let emailRegex = RegExp("[a-z]{1}(.+)@([a-z0-9]{1,15})(.?([a-z]{2,}))+(.?(([a-z]{2,})*))$");
+            if (emailRegex.test(email)) {
+                this._email = email;
+            } else throw "Email is incorrect";
+        } catch (e) { console.error(e); }
+    }
+
     //method
     toString() {
         const option = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -85,7 +97,7 @@ class EmployeePayrollData {
     }
 }
 
-let employeePayrollData = new EmployeePayrollData(100, "Mark", 300000, "M", new Date(), "451 245", );
+let employeePayrollData = new EmployeePayrollData(100, "Mark", 300000, "F", new Date(), "451 245");
 console.log(employeePayrollData.toString());
 
 try {
@@ -95,9 +107,10 @@ try {
     employeePayrollData.gender = "M";
     employeePayrollData.postalCode = "115784";
     employeePayrollData.startDate = new Date();
+    employeePayrollData.email = "abc.xyz@brigdelabz.co";
     console.log(employeePayrollData.toString());
 } catch (e) {
     console.error(e);
 }
-let employeePayrollData1 = new EmployeePayrollData(100, "Joffera", 350000, "F", new Date(), "422003");
+let employeePayrollData1 = new EmployeePayrollData(100, "Joffera", 350000, "F", new Date(), "422003", "abc+xyz@bridgelabz.co.in");
 console.log(employeePayrollData1.toString());
